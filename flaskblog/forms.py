@@ -19,17 +19,18 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
             validators=[DataRequired(), EqualTo('password')])
 
-    submit = SubmitField('Aji Lund mera ')
+    submit = SubmitField('Register ')
 
     """This are the methods that are run on submit"""
 
     def validate_username(self, username1):
         user = User.query.filter_by(username=username1.data).first()
-
-      """this is checking if the user exists with the above condition"""
-
+        
         if user:
             raise ValidationError('Username is Taken')
+
+    """this is checking if the user exists with the above condition"""
+        
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
@@ -44,11 +45,11 @@ class LoginForm(FlaskForm):
                         Length(max=30), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
-    submit = SubmitField('Aji Lund mera')
+    submit = SubmitField('Login')
 
 
 
 class PostForm(FlaskForm):
 	title = StringField('Title', validators=[DataRequired()])
 	content = TextAreaField('Content', validators=[DataRequired()])
-	submit = SubmitField('Laude ka post hai')
+	submit = SubmitField('Post')

@@ -9,7 +9,7 @@ from flask_login import login_user,current_user,logout_user,login_required
 @app.route("/home")
 @app.route("/")
 def home():
-""" here we are extracting all the objects from post model and rendering them to home.html"""
+	""" here we are extracting all the objects from post model and rendering them to home.html"""
 	posts= Post.query.all()
 	return render_template('home.html',posts=posts)
 
@@ -18,10 +18,10 @@ def about():
 	return render_template('about.html', title='About')
 
 """We must put the allowed methods otherwise while submitting there would be an error
-This route will allow both GET and POST"""
+	This route will allow both GET and POST"""
 @app.route("/register", methods=['GET','POST'])
 def register():
-"""if the user is currently logged in he should not be able to see the login or register page through url"""
+	"""if the user is currently logged in he should not be able to see the login or register page through url"""
 
 	if current_user.is_authenticated:
 		return redirect(url_for('home'))
@@ -39,7 +39,8 @@ def register():
 
 @app.route("/login",methods=['GET','POST'])
 def login():
-    """if the user is currently logged in he should not be able to see the login or register page through url"""
+	"""if the user is currently logged in he should not be able to see the login or register page through url"""
+
 	if current_user.is_authenticated:
 		return redirect(url_for('home'))
 	form = LoginForm()
@@ -58,7 +59,7 @@ def login():
 		else:
 			flash(f'Please check your credentials', 'danger')
 	
-	return render_template('login.html', title='Login',form=form)
+	return render_template('login.html', title='Login', form=form)
 
 @app.route("/logout")
 def logout():

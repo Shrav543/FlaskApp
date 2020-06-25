@@ -13,16 +13,13 @@ def load_user(user_id):
 	return User.query.get(int(user_id))
 
 class User(db.Model,UserMixin):
-	
-
-    """This Model will create a user table that will have details of registered user"""
-
+	"""This Model will create a user table that will have details of registered user"""
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(20), unique=True , nullable = False)
 	email = db.Column(db.String(20), unique=True , nullable = False)
 	image_file = db.Column(db.String(20),nullable=False,default='default.jpg')
 	password = db.Column(db.String(60),nullable=False)
-	
+
 	"""
 	backref means to adding another column named author in the Post model 
 	using which we can have all the information of this uset to the Post model 
@@ -39,12 +36,12 @@ class User(db.Model,UserMixin):
 
 
 class Post(db.Model):
-	""" This model will create a table named Post in the database with the columns as below	"""
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+	"""" This model will create a table named Post in the database with the columns as below	"""
+	id = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(100), nullable=False)
+	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	content = db.Column(db.Text, nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+	def __repr__(self):
+		return f"Post('{self.title}', '{self.date_posted}')"

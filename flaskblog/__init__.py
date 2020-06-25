@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-app = Flask (__name__) # instance of Flask class #__name__ is the name of the module. can be __main__ of if imported will be name of the file that imports.
+app = Flask (__name__)
+# instance of Flask class #__name__ is the name of the module. can be __main__ of if imported will be name of the file that imports.
 
 # this is required while using forms 
 app.config['SECRET_KEY'] = 'df963732f50bff2f4051378117aa7f4b'
